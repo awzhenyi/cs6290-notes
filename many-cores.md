@@ -1,11 +1,3 @@
----
-id: many-cores
-title: Many Cores
-sidebar_label: Many Cores
----
-
-[🔗Lecture on Udacity (45 min)](https://classroom.udacity.com/courses/ud007/lessons/913459012/concepts/last-viewed)
-
 ## Many-Core Challenges
 - Cores \\(\uparrow\\) \\(\Rightarrow\\) Coherence Traffic \\(\uparrow\\)
   - Writes to shared location \\(\Rightarrow\\) invalidations and misses
