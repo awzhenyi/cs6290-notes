@@ -1,11 +1,3 @@
----
-id: synchronization
-title: Synchronization
-sidebar_label: Synchronization
----
-
-[🔗Lecture on Udacity (1hr)](https://classroom.udacity.com/courses/ud007/lessons/906999159/concepts/last-viewed)
-
 ## Synchronization Example
 In the following example, each thread is counting letters on its own half of the document. Most of the time, this can work out ok as each thread is operating on different parts of the document and things are being accessed in different orders depending on the letters each thread encounters. But what if both threads simultaneously attempt to update the counter for letter 'A'? Both `LW` for the same address for the proper counter, increments that value, and stores it. In the end, the counter only increments once instead of twice. We need a way to separate lines 2-4 into an Atomic Section (Critical Section) that cannot run simultaneously. With such a construct, one thread completes and stores the incremented value, and cache coherence ensures the other thread obtains the newly updated value before incrementing it.
 
@@ -112,8 +104,6 @@ The key is that if some other thread manages to write to lockvar in-between the 
 ![how is ll/sc atomic](https://i.imgur.com/Q5NjAIk.png)
 
 ## Locks and Performance
-[🎥 View lecture video (3:20)](https://www.youtube.com/watch?v=JS88digI8iQ)
-
 Atomic Exchange has poor performance given that each core is constantly exchanging blocks, triggering invalidations on other cores. This level of overhead is very power hungry and slows down useful work that could be done.
 
 ### Test-and-Atomic-Op Lock
