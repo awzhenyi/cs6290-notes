@@ -1,11 +1,3 @@
----
-id: cache-coherence
-title: Cache Coherence
-sidebar_label: Cache Coherence
----
-
-[🔗Lecture on Udacity (2hr)](https://classroom.udacity.com/courses/ud007/lessons/907008654/concepts/last-viewed)
-
 ## Cache Coherence Problem
 ![cache coherence problem](https://i.imgur.com/VyEGRMt.png)
 As each core reads from memory, it may be using the cache, and value changes on other cores do not properly update all cores. Thus, it may operate on incorrect values with many reads and writes. This is called an Incoherent state. We instead need the idea of Cache Coherence - even when the cache is spread among many cores, it should behave as a single memory.
@@ -193,9 +185,6 @@ In this example with 8 cores, a read request on Cache 0 of B would be sent to th
 
 Cache 1 then performs a write request of B. The directory forwards that write to Cache 0, which moves to Invalid state and can then either return the data (since in E state), or just ignore and acknowledge the invalidation. The directory unsets bit Presence[0] (because it is in I state), sets bit Presence[1] and Cache 1 moves to the M state.
 ![directory entry](https://i.imgur.com/pfSVrbT.png)
-
-### Directory Example
-[🎥 View lecture video (4:59)](https://www.youtube.com/watch?v=lZZYILcQ68Y)
 
 ## Cache Misses with Coherence
 * 3 Cs: Compulsory, Conflict, Capacity
