@@ -1,8 +1,8 @@
 ## Many-Core Challenges
 - Cores &uarr; &rarr; Coherence Traffic &uarr;
-  - Writes to shared location \\(\Rightarrow\\) invalidations and misses
-  - Cores \\(\uparrow\\) \\(\Rightarrow\\) more writes/sec \\(\Rightarrow\\) bus throughput \\(\uparrow\\) 
-  - Bus: one request at a time \\(\Rightarrow\\) bottleneck
+  - Writes to shared location &rarr; invalidations and misses
+  - Cores &uarr; &rarr; more writes/sec &rarr; bus throughput &uarr; 
+  - Bus: one request at a time &rarr; bottleneck
   - We need:
     - Scalable on-chip network that allows traffic to grow with number of cores
     - Directory coherence (so we don't rely on bus to serialize everything)
@@ -13,7 +13,7 @@ Consider a linear bus - as we add more cores, it increases the length of the bus
 Now consider if the cores were arranged in a mesh network, where each core has some adjacent cores it communicates to. Any core can still communicate to any other core through this network, but potentially there can be many such communications going on at once, so the total throughput is much higher, several times what an individual link's throughput.
 
 As we continue to add cores, it simply increases the size of the mesh. While the amount of total traffic increases, so does the total number of links and thus the total throughput of the network.
-- Cores \\(\uparrow\\) \\(\Rightarrow\\) Links \\(\uparrow\\) \\(\Rightarrow\\) Available Throughput \\(\uparrow\\)
+- Cores &uarr; &rarr; Links &uarr; &rarr; Available Throughput &uarr;
 - This is also good for chip building because the links don't intersect each other - it is somewhat flat and easily built in silicon
 
 Can build various network topologies:
@@ -23,16 +23,16 @@ Can build various network topologies:
   - More advanced or less "flat": Flattened Butterfly, Hypercube, etc.
 
 ## Many-Core Challenges 2
-- Cores \\(\uparrow\\) \\(\Rightarrow\\) Coherence Traffic \\(\uparrow\\)
+- Cores &uarr; &rarr; Coherence Traffic &uarr;
   - Scalable on-chip network (e.g. a mesh)
   - Directory coherence
-- Cores \\(\uparrow\\) \\(\Rightarrow\\) Off-Chip Traffic \\(\uparrow\\)
-  - \# cores \\(\uparrow\\) \\(\Rightarrow\\) \# of on-chip caches \\(\uparrow\\)
-  - Misses/core same \\(\Rightarrow\\) cores \\(\uparrow\\) \\(\Rightarrow\\) mem requests \\(\uparrow\\)
-  - \# of pins \\(\uparrow\\), but not \\(\approx\\) to \# of cores \\(\Rightarrow\\) bottleneck
+- Cores &uarr; &rarr; Off-Chip Traffic &uarr;
+  - \# cores &uarr; &rarr; \# of on-chip caches &uarr;
+  - Misses/core same &rarr; cores &uarr; &rarr; mem requests &uarr;
+  - \# of pins &uarr;, but not $\approx$ to \# of cores &rarr; bottleneck
   - Need to reduce # of memory requests/core
-    - Last level cache (L3) shared, size \\(\uparrow \approx \\) # cores \\(\uparrow\\)
-    - One big LLC \\(\Rightarrow\\) SLOW ... one "entry point" \\(\Rightarrow\\) Bottleneck (Bad)
+    - Last level cache (L3) shared, size &uarr; $\approx$ # cores &uarr;
+    - One big LLC &rarr; SLOW ... one "entry point" &rarr; Bottleneck (Bad)
     - Distributed LLC
 
 ## Distributed LLC
@@ -46,14 +46,14 @@ Can build various network topologies:
       - OS can map pages to make accesses more local
 
 ## Many-Core Challenges 2 (again)
-- Cores \\(\uparrow\\) \\(\Rightarrow\\) Coherence Traffic \\(\uparrow\\)
+- Cores &uarr; &rarr; Coherence Traffic &uarr;
   - Scalable on-chip network (e.g. a mesh)
   - Directory coherence
-- Cores \\(\uparrow\\) \\(\Rightarrow\\) Off-Chip Traffic \\(\uparrow\\)
+- Cores &uarr; &rarr; Off-Chip Traffic &uarr;
   - Large Shared Distributed LLC
 - Coherence Directory too large (to fit on chip)
   - Entry for each memory block
-  - Memory many GB \\(\Rightarrow\\) billions of entries? \\(\Rightarrow\\) can't fit
+  - Memory many GB &rarr; billions of entries? &rarr; can't fit
 
 ## On-Chip Directory
 - Home node? Same as LLC slice! (we'll be looking at that node anyway)
@@ -69,40 +69,40 @@ Can build various network topologies:
     - This is a new type of cache miss, caused by directory replacement
 
 ## Many-Core Challenges 3
-- Cores \\(\uparrow\\) \\(\Rightarrow\\) Coherence Traffic \\(\uparrow\\)
+- Cores &uarr; &rarr; Coherence Traffic &uarr;
   - Scalable on-chip network (e.g. a mesh)
   - Directory coherence
-- Cores \\(\uparrow\\) \\(\Rightarrow\\) Off-Chip Traffic \\(\uparrow\\)
+- Cores &uarr; &rarr; Off-Chip Traffic &uarr;
   - Large Shared Distributed LLC
 - Coherence Directory too large (to fit on chip)
   - Distributed Partial Directory
 - Power budget split among cores
-  - Cores \\(\uparrow\\) \\(\Rightarrow\\) W/core \\(\downarrow\\) \\(\Rightarrow\\) f and V \\(\downarrow\\) \\(\Rightarrow\\) 1 thread program is slower with more cores!
+  - Cores &uarr; &rarr; W/core &darr; &rarr; f and V &darr; &rarr; 1 thread program is slower with more cores!
 
 ## Multi-Core Power and Performance
 ![multi core power and performance](https://i.imgur.com/cfb3TXo.png)
 
 Due to need to compensate for less power, each core is noticeably slower.
 
-## No Parallelism \\(\Rightarrow\\) boost frequency
+## No Parallelism &rarr; boost frequency
 - "Turbo" clocks when running on one core
 - Example: Intel's Core I7-4702MQ (Q2 2013)
   - Design Power: 37W
   - 4 cores, "Normal" clock 2.2GHz
-  - "Turbo" clock 3.2GHz (1.45x normal \\(\Rightarrow\\) 3x power)
+  - "Turbo" clock 3.2GHz (1.45x normal &rarr; 3x power)
     - Why not 4x? It spreads more heat to other cores - 3x keeps it distributed to match normal 2.2GHz
 - Example: Intel's Core I7-4771 (Q3 2013)
   - Design Power: 84W
   - 4 cores, "Normal" clock 3.5GHz
-  - "Turbo" clock 3.9GHz (1.11x normal \\(\Rightarrow\\) 1.38x power)
+  - "Turbo" clock 3.9GHz (1.11x normal &rarr; 1.38x power)
     - Meant for desktop, so can cool the chip more effectively at high power
     - But this means the chip already runs almost as hot as it can get, so we don't have much more room to increase power further
 
 ## Many-Core Challenges 4
-- Cores \\(\uparrow\\) \\(\Rightarrow\\) Coherence Traffic \\(\uparrow\\)
+- Cores &uarr; &rarr; Coherence Traffic &uarr;
   - Scalable on-chip network (e.g. a mesh)
   - Directory coherence
-- Cores \\(\uparrow\\) \\(\Rightarrow\\) Off-Chip Traffic \\(\uparrow\\)
+- Cores &uarr; &rarr; Off-Chip Traffic &uarr;
   - Large Shared Distributed LLC
 - Coherence Directory too large (to fit on chip)
   - Distributed Partial Directory
