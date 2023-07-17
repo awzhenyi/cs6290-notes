@@ -1,11 +1,3 @@
----
-id: memory-consistency
-title: Memory Consistency
-sidebar_label: Memory Consistency
----
-
-[🔗Lecture on Udacity (32 min)](https://classroom.udacity.com/courses/ud007/lessons/914198580/concepts/last-viewed)
-
 ## Memory Consistency
 - Coherence: Defines order of accesses to **the same address**
   - We need this to share data among threads
@@ -15,8 +7,6 @@ sidebar_label: Memory Consistency
 
 ### Consistency Matters
 Because of coherence, stores must always occur in-order. But, since out of order processors could change the order of loads, you might get results out of order that wouldn't be possible from the program logic alone.
-
-Examples: [🎥 View lecture video (3:59)](https://www.youtube.com/watch?v=uh8gF64345I), [🎥 View quiz from lecture (3:33)](https://www.youtube.com/watch?v=4X-DciIfFcc)
 
 ### Why We Need Consistency
 - Data-Ready Flag Synchronization
@@ -89,7 +79,6 @@ One key point is that when creating a data-race-free program, we may want to deb
   - Lazy Release
   - Scope
   - ...
-
 
 *[MLP]: Memory Level Parallelism
 *[SC]: Sequential Consistency
