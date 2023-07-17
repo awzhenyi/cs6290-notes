@@ -1,5 +1,5 @@
 ## Many-Core Challenges
-- Cores \\(\uparrow\\) \\(\Rightarrow\\) Coherence Traffic \\(\uparrow\\)
+- Cores &uarr; &rarr; Coherence Traffic &uarr;
   - Writes to shared location \\(\Rightarrow\\) invalidations and misses
   - Cores \\(\uparrow\\) \\(\Rightarrow\\) more writes/sec \\(\Rightarrow\\) bus throughput \\(\uparrow\\) 
   - Bus: one request at a time \\(\Rightarrow\\) bottleneck
