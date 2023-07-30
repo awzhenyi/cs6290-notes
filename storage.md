@@ -1,11 +1,3 @@
----
-id: storage
-title: Storage
-sidebar_label: Storage
----
-
-[🔗Lecture on Udacity (30 min)](https://classroom.udacity.com/courses/ud007/lessons/872590121/concepts/last-viewed)
-
 ## Storage
 Reasons we need it:
 * Files - Programs, data, settings
@@ -53,7 +45,7 @@ Disk capacity then can be represented by the multiplication of:
 - Seek Time
   - 5-10ms, very slow improvement (primarily due to shrinking disk diameter)
 - Rotation: 
-  - 5,000 RPM \\(\rightarrow\\) 10,000 RPM \\(\rightarrow\\) 15,000 RPM
+  - 5,000 RPM &rarr; 10,000 RPM &rarr; 15,000 RPM
   - Materials and noise improvements
   - Improves slowly
 - Controller, Bus
@@ -72,7 +64,7 @@ However, improving this technology is not very easy because portability requires
 * Large capacity, replaceable
 * Sequential access (good for large sequential data, poor for virtual memory)
 * Currently dying out
-  * Low production volume \\(\Rightarrow\\) cost not dropping as rapidly as disks
+  * Low production volume &rarr; cost not dropping as rapidly as disks
   * Cheaper to use more disks rather than invest in new equipment and the tapes to use them (and USB hard drives)
 
 ## Using RAM for storage
