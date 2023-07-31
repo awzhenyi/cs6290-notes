@@ -1,11 +1,3 @@
----
-id: fault-tolerance
-title: Fault Tolerance
-sidebar_label: Fault Tolerance
----
-
-[🔗Lecture on Udacity (1.5hr)](https://classroom.udacity.com/courses/ud007/lessons/872590122/concepts/last-viewed)
-
 ## Dependability
 Quality of delivered service that justifies relying on the system to provide that service.
 - Specified Service = what behavior should be
@@ -39,7 +31,7 @@ Reliability:
 Availability:
 * Service Accomplishment as a fraction of overall time
 * Need to know: Mean Time to Repair (MTTR)
-* Availability = \\(\frac{MTTF}{MTTF+MTTR}\\)
+* Availability = MTTF / (MTTF + MTTR)
 
 ## Kinds of Faults
 By Cause:
@@ -84,8 +76,8 @@ By Duration:
   * Correct one faulty module
 * N=5 - (example: space shuttle)
   * 5 computers perform operation and vote
-  * 1 Wrong Result \\(\Rightarrow\\) normal operation
-  * 2 Wrong Results \\(\Rightarrow\\) abort mission
+  * 1 Wrong Result &rarr; normal operation
+  * 2 Wrong Results &rarr; abort mission
     * Still no failure from this: 3 outvote the 2
   * 3 Wrong Results: failure can be catastrophic (too many broken modules)
     * Abort with 2 failures so that this state should never be reached
@@ -94,7 +86,7 @@ By Duration:
 * Dual/Triple Module Redundancy - Overkill (typically better for computation)
 * Error Detection, Correction Codes
   * Parity: One extra bit (XOR of all data bits)
-    * Fault flips one bit \\(\Rightarrow\\) Parity does not match data
+    * Fault flips one bit &rarr; Parity does not match data
   * ECC: example - SECDED (Single Error Correction, Double Error Detection)
     * Can detect and fix any single bit flip, or can only detect any dual bit flip
     * Example: ECC DRAM modules
@@ -117,12 +109,12 @@ By Duration:
 Disks can only read one track at a time, since the head can be in only one position. RAID 0 takes two disks and "stripes" the data across each disk such that consecutive tracks can be accessed simultaneously with the head in a single position. This results in up to 2x the data throughput and reduced queuing delay.
 
 However, reliability is worse than a single disk:
-* \\(f\\) = failure rate for a single disk
+* f = failure rate for a single disk
   * failures/disk/second
-* Single-Disk MTTF = \\(\frac{1}{f}\\)  (MTTDL: Mean time to data loss = \\(MTTF_1\\))
+* Single-Disk MTTF =  1 / f  (MTTDL: Mean time to data loss = MTTF<sub>1</sub>)
 * N disks in RAID0
-  * \\(f_N = N*f_1 \Rightarrow MTTF_N = MTTDL_N = \frac{MTTF_1}{N}\\)
-  * 2 Disks \\( \Rightarrow  MTTF_2 = \frac{MTTF_1}{2} \\)
+  * f<sub>N</sub> = N*f<sub>1</sub> &rarr; MTTF<sub>N</sub> = MTTDL<sub>N</sub> = MTTF<sub>1</sub> / N
+  * 2 Disks &rarr;  MTTF<sub>2</sub> = MTTF<sub>1</sub> / 2
 
 ### RAID 1: Mirroring (to improve reliability)
 Same data on both disks
@@ -135,21 +127,21 @@ Same data on both disks
     * Not true in this case, because ECC on each sector lets us know which one has a fault
 
 Reliability: 
-* \\(f\\) = failure rate for a single disk
+* f = failure rate for a single disk
   * failures/disk/second
-* Single-Disk MTTF = \\(\frac{1}{f}\\)  (MTTDL: Mean time to data loss = \\(MTTF_1\\))
+* Single-Disk MTTF = 1 / f  (MTTDL: Mean time to data loss = MTTF<sub>1</sub>)
 * 2 disks in RAID1
-  * \\(f_N = N*f_1 \Rightarrow\\) 
-    * both disks OK until \\(\frac{MTTF_1}{2}\\)
-    * remaining disk lives on for \\(MTTF_1\\) time
-  * \\(MTTDL_{RAID1-2} = \frac{MTTFF_1}{2}+MTTF_1\\) (Assumes no disk replaced)
+  * f<sub>N</sub> = N*f<sub>1</sub> &rarr; 
+    * both disks OK until MTTF<sub>1</sub> / 2
+    * remaining disk lives on for MTTF<sub>1</sub> time
+  * MTTDL<sub>RAID1-2disks</sub> = MTTFF<sub>1</sub>/2 + MTTF<sub>1</sub> (Assumes no disk replaced)
 * But we do replace failed disks!
-  * Both disks ok until \\(\frac{MTTF_1}{2}\\)
-  * Disk fails, have one OK disk for \\(MTTR_1\\)
-  * Both disks ok again until \\(\frac{MTTF_1}{2}\\)
+  * Both disks ok until MTTF<sub>1</sub> / 2
+  * Disk fails, have one OK disk for MTTF<sub>1</sub>
+  * Both disks ok again until MTTF<sub>1</sub> / 2
   * So, overall MTTDL :
-    * (when \\(MTTR_1 \ll MTTF_1\\), probability of second disk failing during MTTR = \\(\frac{MTTR_1}{MTTF_1}\\))
-    * \\(MTTDL_{RAID1-2} = \frac{MTTF_1}{2} * \frac{MTTF_1}{MTTR_1}\\) (second factor is 1/probability)
+    * (when MTTR<sub>1</sub> <<< MTTF<sub>1</sub>, probability of second disk failing during MTTR = MTTR<sub>1</sub> / MTTF<sub>1</sub>
+    * MTTDL<sub>RAID1-2disks</sub> = MTTF<sub>1</sub> / 2 * (MTTF<sub>1</sub> / MTTR<sub>1</sub>)    (second factor is 1/probability)
 
 ### RAID 4: Block-Interleaved Parity
 * N disks
@@ -170,12 +162,11 @@ Performance and Reliability:
 * Reads: throughput of N-1 disks
 * Writes: 1/2 throughput of single disk (primary reason for RAID 5)
 * MTTF:
-  * All disks ok for \\(\frac{MTTF_1}{N}\\)
-    * If no repair, we are left with N-1 disk array: + \\(\frac{MTTF_1}{N-1} \rightarrow\\) Bad idea
-    * Repair \\(\Rightarrow\\) chance of another failing during repair: \\(\frac{MTTF_1}{N-1} \\): Multiply by this factor over \\(MTTR_1\\)
-  * \\(MTTF_{RAID4} = \frac{MTTF_1 \* MTTF_1}{N\*(N-1)\*MTTR_1}\\)
+  * All disks ok for MTTF<sub>1</sub> / N
+    * If no repair, we are left with N-1 disk array: + MTTF<sub>1</sub> / N-1 &rarr; Bad idea
+    * Repair &rarr; chance of another failing during repair: $\(\frac{MTTF_1}{N-1}$: Multiply by this factor over MTTR<sub>1</sub>)
+  * MTTF<sub>RAID4</sub> = $\frac{MTTF_1 \* MTTF_1}{N\*(N-1)\*MTTR_1}$
 
-Reads: [🎥 View Lecture Video (2:19)](https://www.youtube.com/watch?v=3QXaSzM2fE8)
 - If we compute the XOR of the old vs new data we are writing, we get the bit flips we're making to the data. If we then XOR this against the parity block, we perform those same bit flips on the parity data and get the new parity information.
 - Thus, the parity disk is a bottleneck for writes (multiple disks may be updating it) \\(\Rightarrow\\) RAID5
 
