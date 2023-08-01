@@ -1,11 +1,3 @@
----
-id: memory
-title: Memory
-sidebar_label: Memory
----
-
-[🔗Lecture on Udacity (23 min)](https://classroom.udacity.com/courses/ud007/lessons/872590120/concepts/last-viewed)
-
 ## How Memory Works
 * Memory Technology: SRAM and DRAM
 * Why is memory slow?
@@ -26,12 +18,10 @@ Both of these lose data when power is not supplied
 
 ## One Memory Bit
 ### SRAM
-* [🎥 See SRAM (4:13)](https://www.youtube.com/watch?v=mwNqzc1o5zM)
 
 SRAM is a matrix of Wordlines and Bitlines. The wordline controls which word is selected, which is the "on" switch for transistors for that word. These transistors connect the bitlines to a inverter feedback loop that contains the data. Another transistor connects the other side of the inverter to another bitline that represents the inverted value of that same bit. In this way memory writes can more easily happen by driving the inverter loop in the opposite direction at the same times, and we can also be more sure of the bit value by looking at the difference between the bit and not-bit lines.
 
 ### DRAM
-* [🎥 See DRAM (4:03)](https://www.youtube.com/watch?v=3s7zsLU83bY)
 
 In DRAM we similarly have a transistor controlled by the wordline, but the main difference is that our memory is no longer stored in a feedback loop, but in a simple capacitor that is charged on a write to memory. The problem is that a transistor is not a perfect switch - it's a tiny bit leaky, which means the capacitor will lose its charge over time. So, we need to write that bit again from time to time. Additionally, reads are destructive, in that they also drain the capacitor.
 
